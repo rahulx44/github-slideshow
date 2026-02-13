@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-charcoal text-zinc-100 font-sans antialiased;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #d4af37, #f5e08b);
+}
+
+.luxury-card {
+  @apply border border-gold/30 bg-zinc-900/80 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-luxe transition-all duration-300;
+}

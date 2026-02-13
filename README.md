@@ -1,13 +1,101 @@
-# Your GitHub Learning Lab Repository for Introducing GitHub
+# Tricity Realtors – Premium Real Estate Platform
 
-Welcome to **your** repository for your GitHub Learning Lab course. This repository will be used during the different activities that I will be guiding you through. See a word you don't understand? We've included an emoji 📖 next to some key terms. Click on it to see its definition.
+Modern full-stack real estate application for **Tricity Realtors** with luxury dark/gold UI, JWT authentication, admin management, and SEO-first architecture.
 
-Oh! I haven't introduced myself...
+## Folder Structure
 
-I'm the GitHub Learning Lab bot and I'm here to help guide you in your journey to learn and master the various topics covered in this course. I will be using Issue and Pull Request comments to communicate with you. In fact, I already added an issue for you to check out.
+```bash
+.
+├── client/                     # Next.js + Tailwind frontend
+│   ├── src/app/                # App router pages (home, listings, about, contact, auth, admin)
+│   ├── src/components/         # UI components
+│   └── src/lib/                # API and shared types
+├── server/                     # Express + MongoDB backend
+│   ├── src/config/             # DB and Cloudinary config
+│   ├── src/controllers/        # Route handlers
+│   ├── src/middleware/         # Auth and upload middleware
+│   ├── src/models/             # Mongoose models
+│   ├── src/routes/             # API route modules
+│   └── src/server.js           # App bootstrap
+└── .env.example               # Environment variables template
+```
 
-![issue tab](https://lab.github.com/public/images/issue_tab.png)
+## Features Implemented
 
-I'll meet you over there, can't wait to get started!
+- JWT-based authentication (register/login/logout) with admin role support.
+- Listings management model with all required fields (100+ scalable).
+- Listing API filters: location, price range, type, bedrooms + sorting.
+- Listing detail + inquiry model and routes.
+- Admin-ready dashboard layout and protected admin APIs.
+- Luxury dark/gold responsive UI + testimonials + featured section.
+- About page with mission, vision, why choose us, credibility messaging.
+- Contact page with Google Maps embed.
+- Newsletter block + floating WhatsApp CTA.
+- SEO metadata + dynamic listing metadata + sitemap generation.
 
-This course is using the :sparkles: open source project [reveal.js](https://github.com/hakimel/reveal.js/). In some cases we’ve made changes to the history so it would behave during class, so head to the original project repo to learn more about the cool people behind this project.
+## Database Schemas
+
+### User
+`name, email, phone, password(hash), role(user|admin), timestamps`
+
+### Listing
+`title, slug, location, price, propertyType, bedrooms, bathrooms, areaSqFt, description, amenities[], imageGallery[], status, isFeatured, timestamps`
+
+### Inquiry
+`listingId(ref), name, phone, message, timestamps`
+
+## API Routes
+
+### Auth
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `POST /api/auth/logout`
+
+### Listings
+- `GET /api/listings`
+- `GET /api/listings/:slug`
+- `POST /api/listings` (admin)
+- `PUT /api/listings/:id` (admin)
+- `DELETE /api/listings/:id` (admin)
+- `GET /api/listings/stats` (admin)
+
+### Inquiries
+- `POST /api/inquiries`
+- `GET /api/inquiries` (admin)
+
+## Setup Instructions
+
+1. Copy environment template:
+   ```bash
+   cp .env.example .env
+   ```
+2. Install dependencies:
+   ```bash
+   npm install --prefix client
+   npm install --prefix server
+   ```
+3. Run backend:
+   ```bash
+   npm run server:dev
+   ```
+4. Run frontend:
+   ```bash
+   npm run client:dev
+   ```
+5. Open http://localhost:3000
+
+## Security Practices Included
+
+- Password hashing via bcrypt.
+- JWT token verification middleware + role-based guard.
+- HTTP-only auth cookie support.
+- Helmet security headers.
+- Rate limiting on `/api` routes.
+- CORS with explicit client origin.
+
+## Production Notes
+
+- Use HTTPS and secure cookie settings in production.
+- Rotate JWT secret regularly.
+- Add request validation layer (Zod/Joi) before production launch.
+- Consider Redis for rate-limit/session scale.
